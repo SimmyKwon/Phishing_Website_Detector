@@ -13,7 +13,7 @@
 - **DevOps:** Docker (To be uploaded!)
 
 ---
-## 📁 폴더 구조 (Project Structure)
+## 📁 Project Folder Structure
 ```text
 Phishing_Websites/
 ├── Model_params/              # All model parameters are stored here
@@ -33,7 +33,7 @@ Phishing_Websites/
 
 ```bash
 # 1. How to clone the project
-git clone [https://github.com/SimmyKwon/Data_Science/Phishing_Websites.git](https://github.com/SimmyKwon/Data_Science/Phishing_Websites.git)
+git clone [https://github.com/SimmyKwon/Phishing_Website_Detector.git](https://github.com/SimmyKwon/Phishing_Website_Detector.git)
 
 # 2. Change to the current directory
 cd .
@@ -48,3 +48,5 @@ python -m venv [Name of your choice for the project]
 
 # 4. Install dependencies
 pip install -e .
+```
+
