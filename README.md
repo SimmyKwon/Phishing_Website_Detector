@@ -13,7 +13,7 @@
 - **DevOps:** Docker (To be uploaded!)
 
 ---
-## 📁 폴더 구조 (Project Structure)
+## 📁 Project Folder Structure
 ```text
 Phishing_Websites/
 ├── Model_params/              # All model parameters are stored here
@@ -33,18 +33,32 @@ Phishing_Websites/
 
 ```bash
 # 1. How to clone the project
-git clone [https://github.com/SimmyKwon/Data_Science/Phishing_Websites.git](https://github.com/SimmyKwon/Data_Science/Phishing_Websites.git)
+git clone [https://github.com/SimmyKwon/Phishing_Website_Detector.git](https://github.com/SimmyKwon/Phishing_Website_Detector.git)
 
 # 2. Change to the current directory
 cd .
 
 # 3. Create virtual environment 
-python -m venv [Name of your choice for the project]
+python -m venv {"Name of your choice for the project"}
 
 #For Windows
-# .\[Name of your choice for the project]\Scripts\activate
+# .\{Name of your choice for the project}\Scripts\activate
 #For Mac/Linux
-# source [Name of your choice for the project]/bin/activate
+# source {Name of your choice for the project}/bin/activate
 
 # 4. Install dependencies
 pip install -e .
+```
+
+### 3. Running files (after installation)
+```bash
+#1. Model training and testing
+python Model_training_testing/Model_train_test.py
+
+#2. Using the interactive UI for website detection
+python Website_detector/UI_Window.py
+```
+
+### 4. ❗ (Very IMPORTANT!) WARNING
+- Due to the nature of phishing websites, it is **not recommended** to download this repository on your local desktop and run it, as the UI window works on your local PC in this case, and may bring all those malicious codes inside your device 💥
+- Instead, it is highly advisable for you to download and run this repository on a virtual machine, or simply use a docker container 😊
