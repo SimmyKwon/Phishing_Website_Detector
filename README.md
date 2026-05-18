@@ -60,5 +60,5 @@ python Website_detector/UI_Window.py
 ```
 
 ### 4. ❗ (Very IMPORTANT!) WARNING
-- Due to the nature of phishing websites, it is **not recommended** to download this repository on your local desktop and run it, as the UI window works on your local PC in this case, and may bring all those malicious codes inside your device 💥
-- Instead, it is highly advisable for you to download and run this repository on a virtual machine, or simply use a docker container 😊
+- Due to the nature of phishing websites, it is **not recommended** to download this repository on your local desktop and run it, as the UI window works on your local PC in this case, and may bring all those malicious codes to your device 💥
+- Instead, it is highly advisable for you to download and run this repository on a **virtual machine** and run it, or simply use a **docker container** 😊
