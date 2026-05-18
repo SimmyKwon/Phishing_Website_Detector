@@ -50,3 +50,11 @@ python -m venv [Name of your choice for the project]
 pip install -e .
 ```
 
+### 3. Running files (after installation)
+```bash
+#1. Model training and testing
+python Model_training_testing/Model_train_test.py
+
+#2. Using the interactive UI for website detection
+python Website_detector/UI_Window.py
+```
