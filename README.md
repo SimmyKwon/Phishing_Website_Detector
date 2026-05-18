@@ -33,7 +33,7 @@ Phishing_Websites/
 
 ```bash
 # 1. How to clone the project
-git clone [https://github.com/SimmyKwon/Phishing_Website_Detector.git](https://github.com/SimmyKwon/Phishing_Website_Detector.git)
+git clone https://github.com/SimmyKwon/Phishing_Website_Detector.git
 
 # 2. Change to the current directory
 cd Phishing_Website_Detector
