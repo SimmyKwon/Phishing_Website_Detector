@@ -36,7 +36,7 @@ Phishing_Websites/
 git clone [https://github.com/SimmyKwon/Phishing_Website_Detector.git](https://github.com/SimmyKwon/Phishing_Website_Detector.git)
 
 # 2. Change to the current directory
-cd .
+cd Phishing_Website_Detector
 
 # 3. Create virtual environment 
 python -m venv {"Name of your choice for the project"}
