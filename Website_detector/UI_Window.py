@@ -6,11 +6,17 @@ import os
 import sys
 import json
 import pandas as pd
+import asyncio
 
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from Data_Extractor import in_depth_filter
 from Whitelist_Manager import is_whitelisted
+
+#%%Force event loop
+if sys.platform == 'win32':
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+
 #%%Set directory
 file_directory = os.path.abspath(__file__)
 current_dir = os.path.dirname(file_directory)
@@ -114,6 +120,9 @@ async def root():
         200: {"description": "Successful Response", "content": None},
         422: {"description": "Validation Error", "content": None}})
 async def predict(url: str):
+    
+    if not (url.startswith("http://") or url.startswith("https://")):
+        url = "https://" + url
 
     if is_whitelisted(url=url):
         print(f"{url} is in whitelist, no need to further examine it.")
@@ -144,6 +153,10 @@ async def predict(url: str):
 
 #%%Execution
 if __name__ == "__main__":
+
+    if sys.platform == 'win32':
+        asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+
     # Use UI_Window:app to correctly load the script onto the internet
     uvicorn.run("UI_Window:app", host="127.0.0.1", port=8080, reload=True)
 # %%
