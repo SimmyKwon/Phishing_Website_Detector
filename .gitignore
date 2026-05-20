@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 **/__pycache__/
 *.py[cod]
 venv/
-=======
-**/__pycache__/
-*.py[cod]
-venv/
->>>>>>> 3b9a3d55e12766d6a634c9c09326a0fb1bae31f3
 .venv/
+**/umbrella_top_1m.csv

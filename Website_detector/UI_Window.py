@@ -9,7 +9,8 @@ import pandas as pd
 
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-from Data_Extractor import first_filter, in_depth_filter
+from Data_Extractor import in_depth_filter
+from Whitelist_Manager import is_whitelisted
 #%%Set directory
 file_directory = os.path.abspath(__file__)
 current_dir = os.path.dirname(file_directory)
@@ -114,17 +115,16 @@ async def root():
         422: {"description": "Validation Error", "content": None}})
 async def predict(url: str):
 
-    #First, use the first_filter to check the status
-    #initial_data = first_filter(url=url)
+    if is_whitelisted(url=url):
+        print(f"{url} is in whitelist, no need to further examine it.")
+        return {"input_url": url, "status": "Data retrieved", 
+                "message": "The given url is 100% Benign Website"}
 
-    #Deep inspection goes on if the website seems suspicious
-    #if initial_data.startswith("1"):
-        #print("Performing deep analysis")
 
     full_data = await in_depth_filter(url=url)
 
     if full_data is None:
-        return {"input_url": url, "status": "error", "message": "Failed to retrieve the data from the webpage."}
+        return {"input_url": url, "status": "Error", "message": "Failed to retrieve the data from the webpage."}
     
     else:
 
