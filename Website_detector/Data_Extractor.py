@@ -155,7 +155,7 @@ async def in_depth_filter(url:str, threshold=0.5):
             )
             page = await context.new_page()
 
-            await page.goto(url, wait_until="networkidle", timeout=30000)
+            await page.goto(url, wait_until="documentloaded", timeout=30000)
             current_domain = urlparse(url).netloc
             
             # --- 1. (PctNullSelfRedirect & PctExtHyperlinks) ---
