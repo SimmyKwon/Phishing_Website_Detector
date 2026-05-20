@@ -143,7 +143,6 @@ launch_args = []
 if sys.platform.startswith('linux'):
     launch_args.extend(["--no-sandbox", "--disable-setuid-sandbox"])
 
-
 async def in_depth_filter(url:str, threshold=0.5):
     async with async_playwright() as p:
         try:
