@@ -128,7 +128,7 @@ async def predict(url: str):
     
     else:
 
-        input_data = pd.DataFrame(full_data)
+        input_data = pd.DataFrame([full_data])
 
         classification_result = model.predict(input_data)
         classification_probability = max(model.predict_proba(input_data)[0])

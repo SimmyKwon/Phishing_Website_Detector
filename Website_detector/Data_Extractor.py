@@ -138,15 +138,15 @@ def first_filter(url:str, mode: Literal['l','d'] = 'l'):
 
 async def in_depth_filter(url:str, threshold=0.5):
     async with async_playwright() as p:
-        # Launch browser (Set headless=False if you want to see the browser window)
-        browser = await p.chromium.launch(headless=True)
-        context = await browser.new_context(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
-            ignore_https_errors=True
-        )
-        page = await context.new_page()
-
         try:
+            # Launch browser (Set headless=False if you want to see the browser window)
+            browser = await p.chromium.launch(headless=True)
+            context = await browser.new_context(
+                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+                ignore_https_errors=True
+            )
+            page = await context.new_page()
+
             await page.goto(url, wait_until="networkidle", timeout=30000)
             current_domain = urlparse(url).netloc
             
@@ -221,14 +221,16 @@ async def in_depth_filter(url:str, threshold=0.5):
             }
 
             final_result = {k: result[k] for k in col_names}
-            
+            await browser.close()
             return final_result
 
         except Exception as e:
-            print(f"Error: {e}")
-            return None
-        finally:
-            # Ensure the browser is closed to free up resources
-            await browser.close()
+            print(f"Error inside Playwright: {e}")
 
+            try:
+                await browser.close()
+            except:
+                pass
+
+            return None
 #%%
