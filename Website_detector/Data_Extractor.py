@@ -136,12 +136,20 @@ def first_filter(url:str, mode: Literal['l','d'] = 'l'):
 
 # %%Create in-depth data collector from the given url
 
+#Make the list for executables for different OS
+launch_args = []
+
+#Add parameters if OS is Linux based
+if sys.platform.startswith('linux'):
+    launch_args.extend(["--no-sandbox", "--disable-setuid-sandbox"])
+
+
 async def in_depth_filter(url:str, threshold=0.5):
     async with async_playwright() as p:
         try:
             # Launch browser (Set headless=False if you want to see the browser window)
             browser = await p.chromium.launch(headless=True,
-                                              args=["--no-sandbox", "--disable-setuid-sandbox"])
+                                              args=launch_args)
             context = await browser.new_context(
                 user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
                 ignore_https_errors=True
