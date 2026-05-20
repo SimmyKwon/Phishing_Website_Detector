@@ -118,28 +118,28 @@ async def predict(url: str):
     initial_data = first_filter(url=url)
 
     #Deep inspection goes on if the website seems suspicious
-    if initial_data.startswith("1"):
-        print("Performing deep analysis")
+    #if initial_data.startswith("1"):
+        #print("Performing deep analysis")
 
-        full_data = await in_depth_filter(url=url)
+    full_data = await in_depth_filter(url=url)
 
-        if full_data is None:
-            return {"input_url": url, "status": "error", "message": "Failed to retrieve the data from the webpage."}
-        
-        else:
-
-            input_data = pd.DataFrame(full_data)
-
-            classification_result = model.predict(input_data)
-            classification_probability = max(model.predict_proba(input_data)[0])
-            #Label websites based on the classification_result
-            result_summary = "Phishing Website" if classification_result == 1 else "Benign Website"
-            
-            return {"input_url": url, "status": "Data retrieved", 
-                    "message": f"The given url is {result_summary} with the probability of {round(100 * classification_probability,1)}%."}
-
+    if full_data is None:
+        return {"input_url": url, "status": "error", "message": "Failed to retrieve the data from the webpage."}
+    
     else:
-        return {"input_url": url, "status": "Data retrieved", "message": initial_data}
+
+        input_data = pd.DataFrame(full_data)
+
+        classification_result = model.predict(input_data)
+        classification_probability = max(model.predict_proba(input_data)[0])
+        #Label websites based on the classification_result
+        result_summary = "Phishing Website" if classification_result == 1 else "Benign Website"
+        
+        return {"input_url": url, "status": "Data retrieved", 
+                "message": f"The given url is {result_summary} with the probability of {round(100 * classification_probability,1)}%."}
+
+    #else:
+        #return {"input_url": url, "status": "Data retrieved", "message": initial_data}
     
 
 #%%Execution

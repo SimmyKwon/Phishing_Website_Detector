@@ -141,7 +141,8 @@ async def in_depth_filter(url:str, threshold=0.5):
         # Launch browser (Set headless=False if you want to see the browser window)
         browser = await p.chromium.launch(headless=True)
         context = await browser.new_context(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+            ignore_https_errors=True
         )
         page = await context.new_page()
 
