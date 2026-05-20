@@ -1,5 +1,6 @@
 from setuptools import setup, find_packages
 from setuptools.command.install import install
+from setuptools.command.develop import develop
 import subprocess
 
 # Additional installation for Playwright
@@ -10,6 +11,13 @@ class CustomInstallCommand(install):
         # 2. Install Playwright binaries
         print("📥 Downloading Playwright Browsers...")
         subprocess.check_call(["playwright", "install", "chromium"]) # Download only what is needed
+
+class CustomDevelopCommand(develop):
+    def run(self):
+        super().run()
+        print("📥 Downloading Playwright Browsers (Develop)...")
+        subprocess.check_call(["playwright", "install", "chromium"])
+
 setup(
     name="phishing-detector-api",
     version="1.0.0",
