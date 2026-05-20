@@ -49,7 +49,7 @@ def load_live_whitelist():
         except Exception as e:
             print(f"❌ Failed to build a cache, using the existent one: {e}")
     
-    #Fetch the data
+    #Fetch the data from the existing list of whitelist websites
     if os.path.exists(CACHE_FILE):
         try:
             with open(CACHE_FILE, 'r', encoding='utf-8') as f:
