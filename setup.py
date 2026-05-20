@@ -38,5 +38,6 @@ setup(
     # Use CustomInstallCommand after setting up the required packages.
     cmdclass={
         'install': CustomInstallCommand,
+        'develop': CustomDevelopCommand
     },
 )
