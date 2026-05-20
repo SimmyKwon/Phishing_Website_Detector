@@ -7,8 +7,8 @@ import sys
 def install_playwright_requirements():
     try:
         # 1. Chromium Download
-        print("📥 [Playwright] Downloading Chromium Browser...")
-        subprocess.check_call([sys.executable, "-m", "playwright", "install", "chromium"])
+        print("📥 [Playwright] Installing chromium and chrome-headless-shell...")
+        subprocess.check_call([sys.executable, "-m", "playwright", "install", "chromium", "chrome-headless-shell"])
         
         # 2. install-deps if OS is Linux
         if sys.platform.startswith('linux'):
