@@ -2,6 +2,9 @@
 - Developed the ML model that detects if a given website is benign or not, with interactive UI made with FastAPI 😁
 - Source of Data: https://www.kaggle.com/datasets/shashwatwork/phishing-dataset-for-machine-learning
 ---
+## ❗ (Very IMPORTANT!) WARNING
+- Due to the nature of phishing websites, it is **not recommended** to download this repository on your local desktop and run it, as the UI window works on your local PC in this case, and may bring all those malicious codes to your device 💥
+- Instead, it is highly advisable for you to download and run this repository on a **virtual machine** and run it, or simply use a **docker container** 😊
 
 ## Features
 - Trained and tested a randomforestclassifier from scikit-learn library for phishing website detection
@@ -58,7 +61,3 @@ python Model_training_testing/Model_train_test.py
 #2. Using the interactive UI for website detection
 python Website_detector/UI_Window.py
 ```
-
-### 4. ❗ (Very IMPORTANT!) WARNING
-- Due to the nature of phishing websites, it is **not recommended** to download this repository on your local desktop and run it, as the UI window works on your local PC in this case, and may bring all those malicious codes to your device 💥
-- Instead, it is highly advisable for you to download and run this repository on a **virtual machine** and run it, or simply use a **docker container** 😊
