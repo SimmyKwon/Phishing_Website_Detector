@@ -115,7 +115,7 @@ async def root():
 async def predict(url: str):
 
     #First, use the first_filter to check the status
-    initial_data = first_filter(url=url)
+    #initial_data = first_filter(url=url)
 
     #Deep inspection goes on if the website seems suspicious
     #if initial_data.startswith("1"):
