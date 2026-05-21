@@ -148,6 +148,21 @@ async def predict(url: str):
         input_data = pd.DataFrame([full_data])
         classification_probability = model.predict_proba(input_data)[0][1]
 
+        #Consider the age of the webpage and assign weight on probability based on the age
+
+        web_age = age_finder(url=url)
+
+        if web_age < 7:
+            weight = 1.75
+        elif web_age < 31:
+            weight = 1.5
+        elif web_age < 90:
+            weight = 1.4
+        elif web_age < 180:
+            weight = 1.3
+        else:
+            weight = 1
+
         #Label websites based on the classification_result
 
         if classification_probability > 0.7:
