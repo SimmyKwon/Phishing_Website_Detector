@@ -146,7 +146,7 @@ async def predict(url: str):
     else:
 
         input_data = pd.DataFrame([full_data])
-        classification_probability = model.predict_proba(input_data)[0][1]
+        probability = model.predict_proba(input_data)[0][1]
 
         #Consider the age of the webpage and assign weight on probability based on the age
 
@@ -156,24 +156,31 @@ async def predict(url: str):
             weight = 1.75
         elif web_age < 31:
             weight = 1.5
-        elif web_age < 90:
+        elif web_age < 91:
             weight = 1.4
-        elif web_age < 180:
+        elif web_age < 181:
             weight = 1.3
         else:
             weight = 1
 
         #Label websites based on the classification_result
 
+        classification_probability = min(probability*weight,1)
+
         if classification_probability > 0.7:
             result_summary = "Phishing Website"
-        elif classification_probability > 0.3:
+        elif classification_probability > 0.35:
             result_summary = "Suspicious Website"
         else:
             result_summary = "Benign Website"
+
+        if result_summary in ["Phishing Website", "Suspicious Website"]:
+            display_prob = round(100 * classification_probability, 1)
+        else:
+            display_prob = round(100 * (1 - classification_probability), 1)
         
         return {"input_url": url, "status": "Data retrieved", 
-                "message": f"The given url is {result_summary} with the probability of {round(100 * classification_probability,1)}%."}
+                "message": f"The given url is {result_summary} with the probability of {display_prob}%."}
 
 #%%Execution
 if __name__ == "__main__":
