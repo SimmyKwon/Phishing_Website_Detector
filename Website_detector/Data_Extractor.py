@@ -8,7 +8,7 @@ import asyncio
 import nest_asyncio
 import pandas as pd
 import numpy as np
-import tldextract #
+import tldextract
 import urllib
 from playwright.async_api import async_playwright
 from urllib.parse import urlparse
