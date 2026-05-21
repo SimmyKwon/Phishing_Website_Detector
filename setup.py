@@ -50,7 +50,7 @@ setup(
         "tldextract~=5.3.1"
     ],
     
-    python_requires=">=3.11.15",
+    python_requires=">=3.11.15, <3.14",
 
     # Use CustomInstallCommand after setting up the required packages.
     cmdclass={
