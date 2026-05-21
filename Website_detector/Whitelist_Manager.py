@@ -1,5 +1,5 @@
 #%%Import Packages
-
+import ssl
 import os
 import urllib.request
 import zipfile
@@ -12,9 +12,7 @@ current_dir = os.path.abspath(__file__)
 os.chdir(os.path.dirname(current_dir))
 
 #Set URL for the data
-UMBRELLA_URL = "https://s3-us-west-1.amazonaws.com/umbrella-static/top-1m.csv.zip"
-#Backup URL
-UMBRELLA_URL_2 = "https://api.sse.cisco.com/investigate/v2/topmillion"
+UMBRELLA_URL = "http://s3-us-west-1.amazonaws.com/umbrella-static/top-1m.csv.zip"
 CACHE_FILE = "umbrella_top_1m.csv"
 
 #%%Function to download these whitelist
@@ -34,8 +32,13 @@ def load_live_whitelist():
     if download:
         try:
             print("▶ Downloading top 1 Million CISCO Frequent Webpage data")
+
+            ssl_context = ssl._create_unverified_context()
+
             #Open the url with url lib
-            response = urllib.request.urlopen(UMBRELLA_URL)
+            response = urllib.request.urlopen(UMBRELLA_URL,
+                                              context=ssl_context,
+                                              timeout=10)
             #Fetch the zip file
             zip_file = zipfile.ZipFile(io.BytesIO(response.read()))
             #Indicate the 1st element of the zip
