@@ -31,6 +31,7 @@ Phishing_Websites/
 
 ### 1. Prerequisites
 - Python >= 3.11.15
+- Compatible OS: Windows, Linux-based OS (except Alpine), MacOS (Not recommended)
 
 ### 2. Installation
 
