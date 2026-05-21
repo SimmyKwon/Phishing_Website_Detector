@@ -8,10 +8,14 @@ import asyncio
 import nest_asyncio
 import pandas as pd
 import numpy as np
+import whoisdomain as whois #
+import tldextract
+import urllib
 from playwright.async_api import async_playwright
 from urllib.parse import urlparse
 from collections import Counter
 from typing import Literal
+from datetime import datetime
 #%%Set the directory
 
 file_directory = os.path.abspath(__file__)
@@ -241,4 +245,50 @@ async def in_depth_filter(url:str, threshold=0.5):
                 pass
 
             return None
+#%%Function that computes the age of the website
+#This function returns the age of a given website to set the weight on the possibility of phishing website
+
+def age_finder(url:str):
+    try:
+        ext = tldextract.extract(url)
+        domain = f"{ext.domain}.{ext.suffix}"
+        
+        rdap_url = f"https://rdap.org/domain/{domain}"
+        
+        req = urllib.request.Request(
+            rdap_url, 
+            headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+        )
+
+        #Load the data with urllib
+        with urllib.request.urlopen(req, timeout=10) as response:
+            data = json.loads(response.read().decode('utf-8'))
+
+        #Extract the information
+        creation_date_str = None
+        for event in data.get('events', []):
+            if event.get('eventAction') in ['registration', 'creation']:
+                creation_date_str = event.get('eventDate')  # Eg: "1997-09-15T04:00:00Z"
+                break
+        
+        if not creation_date_str:
+            return 0
+        
+        reation_date_str = creation_date_str.replace('T', ' ').replace('Z', '')
+        creation_date = datetime.strptime(creation_date_str[:10], "%Y-%m-%d")
+        
+        current_date = datetime.now()
+        age = current_date - creation_date
+
+        return max(0,age.days)
+    
+    except Exception as e:
+        print(f"Something went wrong for getting the website's age: {e}")
+        return 0 #Considering when the info is hidden
+    
+    
 #%%
+
+age_finder("www.naver.com")
+
+# %%
