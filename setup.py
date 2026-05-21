@@ -46,7 +46,8 @@ setup(
         "joblib==1.5.3",
         "pandas==3.0.2",
         "scikit-learn==1.8.0",
-        "nest-asyncio==1.6.0"
+        "nest-asyncio==1.6.0",
+        "tldextract==5.3.1"
     ],
     
     python_requires=">=3.11.15",
