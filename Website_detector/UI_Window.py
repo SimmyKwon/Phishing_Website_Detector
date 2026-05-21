@@ -109,6 +109,14 @@ async def root():
                         resultDiv.innerText = "❌ Error while communicating with the backend server.";
                     }
                 }
+
+                document.getElementById("urlInput").addEventListener("keydown", function(event) {
+                    // Pressing "Enter" will run the examine button straight
+                    if (event.key === "Enter") {
+                        event.preventDefault(); // Prevent a page being refreshed
+                        checkUrl(); // Execute the predefined function
+                    }
+                });
             </script>
         </body>
     </html>
@@ -138,18 +146,19 @@ async def predict(url: str):
     else:
 
         input_data = pd.DataFrame([full_data])
+        classification_probability = model.predict_proba(input_data)[0][1]
 
-        classification_result = model.predict(input_data)
-        classification_probability = max(model.predict_proba(input_data)[0])
         #Label websites based on the classification_result
-        result_summary = "Phishing Website" if classification_result == 1 else "Benign Website"
+
+        if classification_probability > 0.7:
+            result_summary = "Phishing Website"
+        elif classification_probability > 0.3:
+            result_summary = "Suspicious Website"
+        else:
+            result_summary = "Benign Website"
         
         return {"input_url": url, "status": "Data retrieved", 
                 "message": f"The given url is {result_summary} with the probability of {round(100 * classification_probability,1)}%."}
-
-    #else:
-        #return {"input_url": url, "status": "Data retrieved", "message": initial_data}
-    
 
 #%%Execution
 if __name__ == "__main__":
