@@ -285,10 +285,5 @@ def age_finder(url:str):
     except Exception as e:
         print(f"Something went wrong for getting the website's age: {e}")
         return 0 #Considering when the info is hidden
-    
-    
-#%%
-
-age_finder("www.naver.com")
 
 # %%
