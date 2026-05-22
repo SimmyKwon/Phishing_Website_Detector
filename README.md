@@ -46,9 +46,9 @@ cd Phishing_Website_Detector
 python -m venv {"Name of your choice for the project"}
 
 #For Windows
-# .\{Name of your choice for the project}\Scripts\activate
+.\{Name of your choice for the project}\Scripts\activate
 #For Mac/Linux
-# source {Name of your choice for the project}/bin/activate
+source {Name of your choice for the project}/bin/activate
 
 # 4. Install dependencies
 pip install -e .
