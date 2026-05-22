@@ -4,7 +4,7 @@
 ---
 ## ❗ (Very IMPORTANT!) WARNING
 - Due to the nature of phishing websites, it is **not recommended** to download this repository on your local desktop and run it, as the UI window works on your local PC in this case, and may bring all those malicious codes to your device 💥
-- Instead, it is highly advisable for you to download and run this repository on a **virtual machine** and run it, or simply use a **docker container** 😊
+- Instead, it is **highly advisable** for you to download and run this repository on a **virtual machine** and run it, or simply use a **docker container** 😊
 
 ## Features
 - Trained and tested a randomforestclassifier from scikit-learn library for phishing website detection
