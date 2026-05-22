@@ -97,8 +97,8 @@ async def root():
                         // Different colours assigned based on the result
                         if (data.message.includes("Phishing")) {
                             resultDiv.style.color = "#dc3545"; // red
-                        } else if (data.message.includes("suspicious")) {
-                            resultDiv.style.color = "#ffc107"; // yellow
+                        } else if (data.message.includes("Suspicious")) {
+                            resultDiv.style.color = "#fd7e14"; // orange
                         } else {
                             resultDiv.style.color = "#28a745"; // green
                         }
