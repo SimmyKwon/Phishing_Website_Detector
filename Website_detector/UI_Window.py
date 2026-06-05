@@ -10,8 +10,8 @@ import asyncio
 
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-from Data_Extractor import in_depth_filter, age_finder
-from Whitelist_Manager import is_whitelisted
+from .Data_Extractor import in_depth_filter, age_finder
+from .Whitelist_Manager import is_whitelisted
 
 #%%Force event loop
 if sys.platform == 'win32':
