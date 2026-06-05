@@ -33,7 +33,7 @@ Phishing_Websites/
 - Python >= 3.11.15
 - Compatible OS: Windows, Linux-based OS (except Alpine), MacOS (Not recommended)
 
-### 2. Installation
+### 2. Installation on your virtual machine by cloning the repository
 
 ```bash
 # 1. How to clone the project
@@ -61,4 +61,26 @@ python Model_training_testing/Model_train_test.py
 
 #2. Using the interactive UI for website detection
 python Website_detector/UI_Window.py
+```
+
+### 4. Installation and running the project with Dockerfile (Assuming your Docker is turned on)
+
+```bash
+#1. Clone the project
+git clone https://github.com/SimmyKwon/Phishing_Website_Detector.git
+
+#2. Navigate to the project root directory
+cd Phishing_Website_Detector
+
+#3. Build the Docker image (Don't forget the dot '.' at the end!!!)
+docker build -t phishing-detector .
+
+#4. Run the Docker container
+docker run -d -p 8080:8080 --name my-phishing-app phishing-detector
+
+#5. Open your web browser and navigate to:
+http://localhost:8080
+
+#6. Once you are done with using the container, remove the container using:
+docker rm -f my-phishing-app
 ```
