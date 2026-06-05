@@ -25,4 +25,4 @@ EXPOSE 8080
 
 # 8. Run uvicorn pointing to the script inside the subdirectory (Website_detector) to avoid ModuleNotFoundError
 # Host is set to 0.0.0.0 to route the internal web server to the external host machine.
-CMD ["uvicorn", "Website_detector.UI_Window:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "Website_detector.UI_Window:app", "--host", "0.0.0.0", "--port", "8080", "--loop", "asyncio"]
